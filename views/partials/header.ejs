@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PicQuest</title>
+  <link rel="icon"  type="image/x-icon"  href="/images/pinterest.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./stylesheets/style.css">
+</head>
+<body>
+  <% if(nav === true){ %>
+    <nav class="flex py-2 px-4 bg-gray-200  justify-between items-center overflow-x-hidden">
+      <h1 class="text-3xl font-bold ml-3">Pic<span class="text-red-500">Quest</span></h1>
+      <div class="flex gap-8 items-center">
+        <ul class="flex gap-6 font-semibold text-base">
+          <li class="hover:text-slate-700"><a href="/feed">Feed</a></li>
+          <li class="hover:text-slate-700"><a href="/profile">Profile</a></li>
+          <li class="hover:text-slate-700"><a href="/about">About</a></li>
+        </ul>
+        <a href="/logout"><button class="bg-[#E70820] text-white hover:bg-[#c40320] px-6 text-white font-semibold rounded-md py-2">Logout</button></a>
+      </div>
+    </nav>
+  <%}%>

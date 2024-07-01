@@ -1,0 +1,27 @@
+<% include ./partials/header.ejs  %>
+
+<div class="bg-[url('https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-bottom flex items-center justify-center w-full h-screen">
+ <div class="w-96 bg-white flex flex-col items-center py-10 rounded-xl px-4 ">
+  <img src="https://img.icons8.com/?size=480&id=63676&format=png" alt="pinterest" class="w-12">
+  <h1 class="capitalize text-2xl my-3 font-semibold">Welcome to PicQuest</h1>
+   
+  <% if(error.length > 0) {%>
+    <p class="text-red-500 text-sm "><%= error %>!</p>
+  <%}%>
+
+  <form action="/login" method="post" class="">
+    <label for="username" class="flex flex-col text-sm px-2 pb-1 mt-2 ">Username</label>
+    <input name="username" type="text" placeholder="Username" class="text-base px-6 mb-2 py-2  rounded-2xl border border-1 border-slate-900 ">
+    <label for="password" class="flex flex-col text-sm px-2 pb-1">Password</label>
+    <input name="password" type="password" placeholder="Password" class="text-base px-6 py-2 rounded-2xl border border-1 border-slate-900 ">
+   <button class="block bg-[#E60023] text-white font-semibold text-base px-24 py-2 my-5 text-center mx-auto  rounded-full hover:bg-[#c40320] transition-duration-200">Log in</button>
+  </form>
+  <p class="text-xs text-center text-slate-500">By continuing, you agree to Pinterest's <span class="font-bold text-black">Terms of Service</span> and acknowledge you've read our <span class="font-bold text-black">Privacy Policy. Notice at collection.</span></p>
+  <hr class="w-28 border-[1px] rounded-xl my-5">
+  <p class="text-xs text-center ">Not on Pinterest Yet? <a class="underline underline-offset-2 decoration-solid font-semibold" href="/register">Create Account</a></p>
+ </div>
+ 
+</div>
+
+
+<% include ./partials/footer.ejs  %>

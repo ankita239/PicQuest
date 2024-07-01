@@ -1,0 +1,47 @@
+<% include ./partials/header.ejs %>
+
+<div class="w-full text-center py-1 drop-shadow-md mb-5 border border-b-2 bg-gray-100">
+ <form action="/fileupload" id="editForm" method="post" class="hidden" enctype="multipart/form-data">
+   <input type="file" name="image">
+ </form>
+ <div class="relative w-28 h-28 mx-auto  ">
+  <div class="profile w-28 h-28 rounded-full overflow-hidden border-2 bg-[url('https://img.icons8.com/?size=60&id=fJ7hcfUGpKG7&format=png')] bg-no-repeat bg-center border-gray-200 ">
+    <img src="/images/uploads/<%= user.profileImage %>" alt="" class="object-cover w-full h-full"> 
+     <div>
+ </div>
+    <div id="editIcon" class="absolute bg-slate-200 w-6 h-6 rounded-full bottom-0 right-2 hover:cursor-pointer">
+      <img src="https://img.icons8.com/?size=48&id=5789&format=png" class="w-4 m-auto my-1 text-white " >
+    </div>
+  </div>
+ </div>
+  <p class="my-1 font-semibold"><%= user.name %></p>
+  <h3>@<%= user.username %></h3>
+  <div class="buttons flex gap-5 items-center justify-center my-5">
+    <a href="/show"><button class="bg-slate-200 hover:bg-slate-300 px-4 py-2 font-semibold rounded-full">Your Profile</button></a>
+   <a href="/add"> <button class="bg-[#E70820] hover:bg-[#bc0111] px-7 text-white py-2 font-semibold rounded-full">Upload</button></a>
+  </div>
+</div>
+
+<div class="container flex flex-wrap gap-4 px-24 w-full items-center my-2 ">
+  <a href="/show" class="card-1 w-72 min-w-60  h-60 rounded-xl border border-slate-300 overflow-hidden pb-3">
+     <img src="images/uploads/<%= user?.posts[0]?.image %>" alt="Nothing's here :(" class="w-full h-4/5 object-cover bg-center ">
+     <h4 class="px-2 mt-2 font-bold">Your Uploaded Pins</h4>
+     <p class="px-2  text-slate-500"><%= user.posts.length %> pins</p>
+  </a>
+  
+</div>
+
+<script>
+    document.querySelector('#editIcon').addEventListener("click",function()
+  {
+    document.querySelector('#editForm input').click();
+  })
+  
+  document.querySelector('#editForm input').addEventListener("change",function()
+{
+  document.querySelector('#editForm').submit();
+})
+
+</script>
+
+<% include ./partials/footer.ejs %>

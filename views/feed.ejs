@@ -1,0 +1,16 @@
+<% include ./partials/header.ejs %>
+
+<div class="container w-full h-screen flex flex-wrap gap-2 px-3 py-5  ">
+  <% posts.forEach(function(elem){%>
+    <div class="subcontainer">
+      <div><div class="card w-60 h-[480px] border border-gray-300 rounded-xl  overflow-hidden">
+        <img src="/images/uploads/<%= elem.image %>" alt="" class="h-4/5 w-full object-contain  overflow-hidden">
+        <h1 class="px-2 font-bold"><%= elem.title %></h1>
+        <p class="text-xs text-slate-500 my-1 px-2"><%= elem.description%></p>
+        <h2 class="px-2 font-semibold">@<%= elem.user.username %></h2>
+    </div></div>
+    </div>
+  <% }) %>
+</div>
+
+<% include ./partials/footer.ejs %>
