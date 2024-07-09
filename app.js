@@ -6,7 +6,10 @@ var logger = require('morgan');
 const expressSession = require('express-session');
 const passport = require('passport');
 const usersRoute = require('./routes/users');
-const port = process.env.PORT || 3000;
+const MongoStore = require('connect-mongo');
+require('dotenv').config();
+
+
 
 var flash = require('connect-flash');
 
@@ -23,7 +26,14 @@ app.use(flash());
 app.use(expressSession({
   resave:false,
   saveUninitialized:false,
-  secret : "hey hey hey"
+  secret : "hey hey hey",
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URL, // Replace with your MongoDB connection string
+    ttl: 365 * 24 * 60 * 60 // Time to live (365 days)
+  }),
+  cookie: {
+    maxAge: 365 * 24 * 60 * 60 * 1000 // 365 days in milliseconds
+  }
 }));
 
 app.use(passport.initialize());

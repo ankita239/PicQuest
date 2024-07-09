@@ -7,8 +7,10 @@
   },
   "dependencies": {
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^16.4.5",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-session": "^1.18.0",
@@ -24,7 +26,6 @@
   },
   "description": "/ - Login and Register Screen\r /register\r /login\r /Profile - Profile Page with different boards\r /Feed - Feed page with different pins\r /Save/pinid - Save the pin in a board\r /Delete/pinid - Delete a pin from the board\r /Logout",
   "main": "app.js",
-  "devDependencies": {},
   "keywords": [],
   "author": "",
   "license": "ISC"
