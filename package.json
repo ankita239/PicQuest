@@ -4,6 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node app.js"
+<<<<<<< HEAD
+=======
+    
+>>>>>>> d7e31fbe0d684dfe7f027f53992051add8409e74
   },
   "dependencies": {
     "connect-flash": "^0.1.1",
