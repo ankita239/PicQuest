@@ -5,12 +5,15 @@ const userModel = require('./users');
 const postModel = require('./posts');
 const localStrategy = require('passport-local');
 passport.use(new localStrategy(userModel.authenticate()));
-const upload = require('./multer')
+const upload = require('./multer');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index',{nav:false});
 });
+
+
 
 router.post('/fileupload', isLoggedIn ,upload.single('image'),async function(req,res){
   const user = await userModel.findOne({username:req.session.passport.user});

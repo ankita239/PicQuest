@@ -6,6 +6,7 @@ var logger = require('morgan');
 const expressSession = require('express-session');
 const passport = require('passport');
 const usersRoute = require('./routes/users');
+const port = process.env.PORT || 3000;
 
 var flash = require('connect-flash');
 
@@ -55,6 +56,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.listen(port, () => {
+  console.log(`App listening at http://localhost:${port}`);
 });
 
 module.exports = app;
