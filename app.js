@@ -9,12 +9,13 @@ const flash = require('connect-flash');
 const localStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const userModel = require('./routes/users'); // Adjust path as per your structure
-
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,7 +42,8 @@ mongoose.connect(mongoUrl, {
 app.use(expressSession({
   secret: process.env.SESSION_SECRET || 'hey hey hey', // Use environment variable for production
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new FileStore(),
 }));
 
 // Flash messages
@@ -75,5 +77,11 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+if()
+
+app.listen(PORT, ()=>{
+  console.log(`Server running on port number ${PORT}`)
+})
 
 module.exports = app;
