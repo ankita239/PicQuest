@@ -15,6 +15,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 const port = process.env.PORT || 3000;
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -26,25 +27,29 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// MongoDB connection
 const mongoUrl = 'mongodb+srv://ankita478:ankita478@clustermine.bww1zz5.mongodb.net/?retryWrites=true&w=majority&appName=ClusterMine';
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoUrl, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true, 
+  useCreateIndex: true // For older versions of Mongoose
+})
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-
 // Session management
 app.use(expressSession({
-  secret: 'your_secret_here', // Replace with a strong, random string
+  secret: process.env.SESSION_SECRET || 'hey hey hey', // Use environment variable for production
   resave: false,
   saveUninitialized: false
 }));
 
+// Flash messages
+app.use(flash());
+
 // Passport initialization
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Flash messages
-app.use(flash());
 
 // Passport configuration
 passport.use(new localStrategy(userModel.authenticate()));
