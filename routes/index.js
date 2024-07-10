@@ -36,19 +36,36 @@ router.get('/add', isLoggedIn , async function(req, res, next) {
   res.render('add',{user,nav:true});
 });
 
-router.post('/createpost', isLoggedIn , upload.single('postImage') ,async function(req,res){
-  const user = await userModel.findOne({username:req.session.passport.user});
-   const post =await postModel.create({
-    user: user._id,
-    title: req.body.title,
-    description: req.body.description,
-    image: req.file.filename
-  })
-  
-  user.posts.push(post._id);
-  await user.save();
-  res.redirect('/profile');
-})
+router.post('/createpost', isLoggedIn, upload.single('postImage'), async function(req, res) {
+  console.log('Request Body:', req.body);
+  console.log('Uploaded File:', req.file);
+
+  try {
+    const user = await userModel.findOne({ username: req.session.passport.user });
+    console.log('User Found:', user);
+
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    const post = await postModel.create({
+      user: user._id,
+      title: req.body.title,
+      description: req.body.description,
+      image: req.file.filename
+    });
+
+    console.log('Post Created:', post);
+
+    user.posts.push(post._id);
+    await user.save();
+    res.redirect('/profile');
+  } catch (err) {
+    console.error('Error creating post:', err);
+    res.status(500).send('Server Error');
+  }
+});
+
 
 router.get('/login',function(req,res)
 {
