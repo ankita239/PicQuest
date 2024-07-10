@@ -7,6 +7,7 @@ const expressSession = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 const localStrategy = require('passport-local').Strategy;
+const mongoose = require('mongoose');
 const userModel = require('./routes/users'); // Adjust path as per your structure
 
 var indexRouter = require('./routes/index');
