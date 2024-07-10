@@ -1,6 +1,7 @@
 const multer = require('multer');
 const {v4:uuidv4} = require('uuid');
 const path = require('path');
+const cloudinary = require('cloudinary').v2; // Add this line to import Cloudinary
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 cloudinary.config({
