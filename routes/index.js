@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/fileupload', isLoggedIn ,upload.single('image'),async function(req,res){
   const user = await userModel.findOne({username:req.session.passport.user});
-  user.profileImage = req.file.filename;
+  user.profileImage = req.file.path;
   await user.save();
   res.redirect('/profile',)
 })
