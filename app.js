@@ -17,7 +17,7 @@ var usersRouter = require('./routes/users');
 
 
 var app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 3000;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
