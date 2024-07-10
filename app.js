@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -13,7 +14,7 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-require('dotenv').config();
+
 
 var app = express();
 const PORT = process.env.PORT || 5000;
