@@ -1,13 +1,14 @@
 const multer = require('multer');
-const {v4:uuidv4} = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const cloudinary = require('cloudinary').v2; // Add this line to import Cloudinary
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
+// Make sure to set these environment variables in your hosting environment
 cloudinary.config({
-  cloud_name: mycloud,
-  api_key: 885751177364496,
-  api_secret: LJgu8vYBG2bKKzMnpK4SieZsTZQ
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 const storage = new CloudinaryStorage({
@@ -19,18 +20,6 @@ const storage = new CloudinaryStorage({
   }
 });
 
-
-// const storage = multer.diskStorage({
-//   destination: function(req,file,cb){
-//     cb(null,path.join(__dirname, '../public/images/uploads'))
-//   },
-//   filename : function(req,file,cb)
-//   {
-//      const uniquename = uuidv4();
-//      cb(null,uniquename + path.extname(file.originalname)); 
-//   }
-// })
-
-const upload = multer({storage:storage});
+const upload = multer({ storage: storage });
 
 module.exports = upload;
